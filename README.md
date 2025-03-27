@@ -1,17 +1,17 @@
-# Dwell Doctor - Septic System Management
+# Sunset Septics - Interactive Septic System Guide
 
-A comprehensive web application for managing and maintaining residential septic systems. This project helps homeowners track their septic system maintenance, schedule inspections, and access important resources.
+A modern, interactive website for Sunset Septics showcasing septic system services, educational resources, and professional expertise in septic system maintenance and installation.
 
 ## Features
 
-- Interactive dashboard for septic system management
-- Maintenance tracking and scheduling
-- Resource library with official guidelines and regulations
-- Dark mode support
-- Responsive design for all devices
-- User authentication and data persistence
-- Customizable maintenance reminders
+- Interactive 3D septic system visualization
+- Comprehensive resource library with official guidelines
+- Professional services showcase
+- Photo gallery of completed projects
 - Educational content about septic system care
+- Contact information and service area details
+- Responsive design for all devices
+- Dark mode support
 
 ## Prerequisites
 
@@ -22,8 +22,8 @@ A comprehensive web application for managing and maintaining residential septic 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/dwell-doctor.git
-cd dwell-doctor
+git clone https://github.com/yourusername/sunset-septics.git
+cd sunset-septics
 ```
 
 2. Install dependencies:
@@ -47,9 +47,11 @@ yarn dev
 ```
 src/
 ├── components/
+│   ├── Scene.tsx
 │   ├── ResourcesTile.tsx
-│   ├── MaintenanceTracker.tsx
-│   ├── Dashboard.tsx
+│   ├── Gallery.tsx
+│   ├── Contact.tsx
+│   ├── Navigation.tsx
 │   └── UI components
 ├── styles/
 │   └── global.css
@@ -60,17 +62,17 @@ src/
 ## Technologies Used
 
 - React
+- Three.js for 3D visualization
 - TypeScript
 - Vite
 - CSS Variables for theming
-- React Router for navigation
 - Modern CSS features
 
 ## Theme System
 
-The application uses a comprehensive theme system with CSS variables for consistent styling:
+The website uses a comprehensive theme system with CSS variables for consistent styling:
 
-- Color schemes for light and dark modes
+- Professional color schemes
 - Standardized spacing and typography
 - Responsive design utilities
 - Consistent component styling
@@ -91,4 +93,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Ontario Onsite Wastewater Association for industry guidelines
 - Health Unit for septic system regulations
-- All contributors and maintainers 
+- Three.js community for 3D visualization support 
