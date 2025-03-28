@@ -23,11 +23,11 @@ const App: React.FC = () => {
             <Reference />
             <div className="main-page-stripe" />
             <Gallery />
-            <div className="contact-header">
+            <div className="section-header">
               <h2>Contact</h2>
             </div>
             <ContactTile />
-            <div className="resources-header">
+            <div className="section-header">
               <h2>Resources</h2>
             </div>
             <ResourcesTile />
@@ -36,11 +36,11 @@ const App: React.FC = () => {
       case 'resources':
         return (
           <>
-            <div className="resources-header">
+            <div className="section-header">
               <h2>Resources</h2>
             </div>
             <Resources />
-            <div className="contact-header">
+            <div className="section-header">
               <h2>Contact</h2>
             </div>
             <ContactTile />
@@ -49,11 +49,11 @@ const App: React.FC = () => {
       case 'contact':
         return (
           <>
-            <div className="contact-header">
+            <div className="section-header">
               <h2>Contact</h2>
             </div>
             <Contact />
-            <div className="resources-header">
+            <div className="section-header">
               <h2>Resources</h2>
             </div>
             <ResourcesTile />
@@ -66,11 +66,11 @@ const App: React.FC = () => {
             <Reference />
             <div className="main-page-stripe" />
             <Gallery />
-            <div className="contact-header">
+            <div className="section-header">
               <h2>Contact</h2>
             </div>
             <ContactTile />
-            <div className="resources-header">
+            <div className="section-header">
               <h2>Resources</h2>
             </div>
             <ResourcesTile />
