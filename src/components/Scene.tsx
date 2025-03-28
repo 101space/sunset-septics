@@ -6,7 +6,7 @@ import { Canvas } from '@react-three/fiber'
 import * as THREE from 'three'
 
 function Model() {
-  const { scene } = useGLTF('/assets/septic.glb')
+  const { scene } = useGLTF('/assets/septic.optimized.glb')
   const groupRef = useRef<Group>(null)
   const { camera } = useThree()
   const mousePosition = useRef({ x: 0, y: 0 })
@@ -149,4 +149,4 @@ export function Scene() {
 }
 
 // Preload the model
-useGLTF.preload('/assets/septic.glb') 
+useGLTF.preload('/assets/septic.optimized.glb') 
