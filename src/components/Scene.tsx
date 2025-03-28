@@ -1,6 +1,6 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { OrbitControls, useGLTF, Environment, Float } from '@react-three/drei'
+import { OrbitControls, useGLTF, Environment, Float, Html } from '@react-three/drei'
 import { Group } from 'three'
 import { MODEL_URL } from '../config/cdn'
 import { Canvas } from '@react-three/fiber'
@@ -9,6 +9,7 @@ import * as THREE from 'three'
 function Model() {
   const { scene } = useGLTF(MODEL_URL)
   const groupRef = useRef<Group>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     if (groupRef.current) {
@@ -16,6 +17,7 @@ function Model() {
       const box = new THREE.Box3().setFromObject(groupRef.current)
       const center = box.getCenter(new THREE.Vector3())
       groupRef.current.position.sub(center)
+      setIsLoaded(true)
     }
   }, [])
 
@@ -27,15 +29,25 @@ function Model() {
   })
 
   return (
-    <Float
-      speed={1.5}
-      rotationIntensity={0.2}
-      floatIntensity={0.5}
-    >
-      <group ref={groupRef}>
-        <primitive object={scene} />
-      </group>
-    </Float>
+    <>
+      {!isLoaded && (
+        <Html center>
+          <div className="loading-overlay">
+            <div className="loading-spinner"></div>
+            <p>Loading 3D Model...</p>
+          </div>
+        </Html>
+      )}
+      <Float
+        speed={1.5}
+        rotationIntensity={0.2}
+        floatIntensity={0.5}
+      >
+        <group ref={groupRef}>
+          <primitive object={scene} />
+        </group>
+      </Float>
+    </>
   )
 }
 
@@ -58,6 +70,7 @@ export function Scene() {
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}
           style={{ background: 'transparent' }}
+          gl={{ antialias: true, alpha: true }}
         >
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
