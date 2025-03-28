@@ -48,6 +48,9 @@ body {
 .main-content {
   flex: 1;
   position: relative;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  transition: background-color 0.3s ease;
 }
 
 /* Navigation */
@@ -533,9 +536,10 @@ body {
 
 /* Resources */
 .resources {
-  padding: 2rem;
-  background-color: white;
   min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--color-background);
+  transition: opacity 0.3s ease;
   position: relative;
   z-index: 2;
 }
@@ -569,9 +573,10 @@ body {
 
 /* Contact */
 .contact {
-  padding: 2rem;
-  background-color: white;
   min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--color-background);
+  transition: opacity 0.3s ease;
   position: relative;
   z-index: 2;
 }
@@ -1145,4 +1150,23 @@ body {
   backdrop-filter: blur(5px);
   border-radius: 4px;
   pointer-events: none;
+}
+
+.resources-header,
+.contact-header {
+  text-align: center;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.resources-header h2,
+.contact-header h2 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 } 

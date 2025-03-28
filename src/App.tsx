@@ -36,6 +36,9 @@ const App: React.FC = () => {
       case 'resources':
         return (
           <>
+            <div className="resources-header">
+              <h2>Resources</h2>
+            </div>
             <Resources />
             <div className="contact-header">
               <h2>Contact</h2>
@@ -46,6 +49,9 @@ const App: React.FC = () => {
       case 'contact':
         return (
           <>
+            <div className="contact-header">
+              <h2>Contact</h2>
+            </div>
             <Contact />
             <div className="resources-header">
               <h2>Resources</h2>
