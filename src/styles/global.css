@@ -1287,6 +1287,17 @@ body {
   transition: opacity 0.3s ease;
 }
 
+.scene-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--color-background);
+}
+
+.scene-canvas canvas {
+  background-color: var(--color-background) !important;
+}
+
 .scene-overlay {
   position: absolute;
   top: 2rem;
@@ -1306,12 +1317,6 @@ body {
 .scene-overlay p {
   font-size: 1.2rem;
   opacity: 0.9;
-}
-
-.scene-canvas {
-  width: 100%;
-  height: 100%;
-  position: relative;
 }
 
 .scene-controls {

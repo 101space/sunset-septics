@@ -69,9 +69,18 @@ export function Scene() {
         </div>
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}
-          style={{ background: 'transparent' }}
-          gl={{ antialias: true, alpha: true }}
+          gl={{ 
+            antialias: true,
+            alpha: true,
+            preserveDrawingBuffer: true
+          }}
+          style={{ 
+            background: 'transparent',
+            width: '100%',
+            height: '100%'
+          }}
         >
+          <color attach="background" args={['#011627']} />
           <ambientLight intensity={0.5} />
           <directionalLight position={[10, 10, 5]} intensity={1} />
           <Model />
