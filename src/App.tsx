@@ -43,12 +43,9 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <Navigation />
+      <Navigation onSectionChange={setCurrentSection} />
       <main className="main-content">
-        <Scene />
-        <div className="main-page-stripe" />
-        <Gallery />
-        <Reference />
+        {renderSection()}
         <div className="contact-header">
           <h2>Contact</h2>
         </div>
