@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Environment, Float } from '@react-three/drei'
 import { Group } from 'three'
 import { MODEL_URL } from '../config/cdn'
