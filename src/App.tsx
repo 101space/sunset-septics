@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Scene } from './components/Scene'
 import { Gallery } from './components/Gallery'
 import { Resources } from './components/Resources'
@@ -12,7 +12,7 @@ import './styles/global.css'
 type Section = 'model' | 'resources' | 'contact'
 
 const App: React.FC = () => {
-  const [currentSection, setCurrentSection] = React.useState<Section>('model')
+  const [currentSection, setCurrentSection] = useState<Section>('model')
 
   const renderSection = () => {
     switch (currentSection) {

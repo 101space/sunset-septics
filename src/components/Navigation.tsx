@@ -1,7 +1,9 @@
 import React from 'react';
 
+type Section = 'model' | 'resources' | 'contact';
+
 interface NavigationProps {
-  onSectionChange: (section: 'model' | 'resources' | 'contact') => void;
+  onSectionChange: (section: Section) => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ onSectionChange }) => {
