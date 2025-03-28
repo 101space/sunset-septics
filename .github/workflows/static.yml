@@ -43,6 +43,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          CI: false
+          VITE_CDN_URL: ${{ github.server_url }}/${{ github.repository }}/raw/main/public/assets
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,9 +53,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the built React app
           path: './dist'
+          retention-days: 1
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 600000 # 10 minutes 
