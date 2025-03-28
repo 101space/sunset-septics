@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react'
-import { useFrame, useThree, useLoader } from '@react-three/fiber'
+import { useRef, useEffect } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Environment, Float } from '@react-three/drei'
 import { Group } from 'three'
 import { MODEL_URL } from '../config/cdn'
@@ -9,7 +9,6 @@ import * as THREE from 'three'
 function Model() {
   const { scene } = useGLTF(MODEL_URL)
   const groupRef = useRef<Group>(null)
-  const { camera } = useThree()
 
   useEffect(() => {
     if (groupRef.current) {
@@ -20,7 +19,7 @@ function Model() {
     }
   }, [])
 
-  useFrame((state) => {
+  useFrame(() => {
     if (groupRef.current) {
       // Add subtle rotation
       groupRef.current.rotation.y += 0.001
