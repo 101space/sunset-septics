@@ -1,0 +1,23 @@
+32d90e0 Fix background color flashing and improve loading state
+616853a Fix blue screen issue by properly handling background colors
+a9bf8b8 Add loading state and improve transitions for 3D model
+646999d Remove unused useThree import
+2acb1d9 Fix TypeScript errors by removing unused imports and variables
+eae0f0d Switch to CDN for 3D model loading
+15f0e48 Configure Git LFS for 3D model files and update deployment workflow
+95b9e8b Optimize 3D model size using gltf-pipeline
+5745baf Fix CSS conflicts by separating section headers from fixed navigation buttons
+0c2f276 Fix section transitions and prevent screen flashing
+bc5c311 Fix screen flashing by properly organizing section rendering
+cba4606 Fix TypeScript error by properly importing useState
+b6f68a9 Fix TypeScript errors and implement navigation functionality
+73c45eb Update workflow to build React app before deployment
+9095ec5 Update to simpler static deployment workflow
+6073393 Add static deployment workflow for GitHub Pages
+e6eb14d Fix GitHub Pages configuration and improve build settings
+7be3a14 Update deployment configuration with improved debugging and build settings
+44e7b82 Update GitHub Pages workflow configuration
+7b7bbdb Fix GitHub Pages environment name to github-pages
+575c358 Fix GitHub Pages workflow environment name
+f193b28 Add GitHub Pages deployment configuration
+4ab9ae5 Initial commit

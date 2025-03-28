@@ -1,17 +1,20 @@
-# Sunset Septics - Interactive Septic System Guide
+# Sun Set Landscaping - 3D Septic System Visualization
 
-A modern, interactive website for Sunset Septics showcasing septic system services, educational resources, and professional expertise in septic system maintenance and installation.
+An interactive 3D visualization of a septic system, built with React Three Fiber and Three.js. This project showcases the components and functionality of a conventional septic system in an engaging and educational way.
 
 ## Features
 
-- Interactive 3D septic system visualization
-- Comprehensive resource library with official guidelines
-- Professional services showcase
-- Photo gallery of completed projects
-- Educational content about septic system care
-- Contact information and service area details
-- Responsive design for all devices
-- Dark mode support
+- Interactive 3D model of a conventional septic bed
+- Detailed visualization of system components:
+  - Septic tank with cutaway view
+  - Distribution box
+  - Drainage field with perforated pipes
+  - Soil layers (topsoil, gravel, sand)
+- Camera controls for rotation, zoom, and pan
+- Hover labels for component identification
+- Responsive design for desktop and mobile
+- Sunset-themed lighting and materials
+- Loading screen with progress indicator
 
 ## Prerequisites
 
@@ -22,8 +25,8 @@ A modern, interactive website for Sunset Septics showcasing septic system servic
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/sunset-septics.git
-cd sunset-septics
+git clone https://github.com/yourusername/sunset-landscaping.git
+cd sunset-landscaping
 ```
 
 2. Install dependencies:
@@ -40,42 +43,52 @@ npm run dev
 yarn dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+4. Open your browser and navigate to `http://localhost:3000`
 
 ## Project Structure
 
 ```
 src/
 ├── components/
+│   ├── models/
+│   │   ├── SepticTank.tsx
+│   │   ├── DistributionBox.tsx
+│   │   ├── DrainageField.tsx
+│   │   └── SoilLayers.tsx
 │   ├── Scene.tsx
-│   ├── ResourcesTile.tsx
-│   ├── Gallery.tsx
-│   ├── Contact.tsx
-│   ├── Navigation.tsx
-│   └── UI components
+│   ├── UI.tsx
+│   └── LoadingScreen.tsx
 ├── styles/
 │   └── global.css
 ├── App.tsx
 └── main.tsx
 ```
 
+## Controls
+
+- Left Mouse Button: Rotate camera
+- Right Mouse Button: Pan camera
+- Mouse Wheel: Zoom in/out
+- Hover over components to see labels
+- Use UI buttons to show/hide information and reset camera view
+
 ## Technologies Used
 
 - React
-- Three.js for 3D visualization
+- Three.js
+- React Three Fiber
+- React Three Drei
 - TypeScript
 - Vite
-- CSS Variables for theming
-- Modern CSS features
+- GSAP (for animations)
 
-## Theme System
+## Performance Considerations
 
-The website uses a comprehensive theme system with CSS variables for consistent styling:
-
-- Professional color schemes
-- Standardized spacing and typography
-- Responsive design utilities
-- Consistent component styling
+- Models are optimized for web performance
+- Level of detail (LOD) implementation for complex models
+- Texture and material optimization
+- Proper garbage collection
+- Progressive loading
 
 ## Contributing
 
@@ -91,6 +104,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Ontario Onsite Wastewater Association for industry guidelines
-- Health Unit for septic system regulations
-- Three.js community for 3D visualization support 
+- Three.js community for excellent documentation and examples
+- React Three Fiber team for making Three.js accessible in React
+- Sun Set Landscaping for providing the opportunity to create this visualization 

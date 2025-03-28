@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Scene } from './components/Scene'
 import { Gallery } from './components/Gallery'
 import { Resources } from './components/Resources'
@@ -12,7 +12,7 @@ import './styles/global.css'
 type Section = 'model' | 'resources' | 'contact'
 
 const App: React.FC = () => {
-  const [currentSection, setCurrentSection] = useState<Section>('model')
+  const [currentSection, setCurrentSection] = React.useState<Section>('model')
 
   const renderSection = () => {
     switch (currentSection) {
@@ -23,42 +23,12 @@ const App: React.FC = () => {
             <Reference />
             <div className="main-page-stripe" />
             <Gallery />
-            <div className="section-header">
-              <h2>Contact</h2>
-            </div>
-            <ContactTile />
-            <div className="section-header">
-              <h2>Resources</h2>
-            </div>
-            <ResourcesTile />
           </>
         )
       case 'resources':
-        return (
-          <>
-            <div className="section-header">
-              <h2>Resources</h2>
-            </div>
-            <Resources />
-            <div className="section-header">
-              <h2>Contact</h2>
-            </div>
-            <ContactTile />
-          </>
-        )
+        return <Resources />
       case 'contact':
-        return (
-          <>
-            <div className="section-header">
-              <h2>Contact</h2>
-            </div>
-            <Contact />
-            <div className="section-header">
-              <h2>Resources</h2>
-            </div>
-            <ResourcesTile />
-          </>
-        )
+        return <Contact />
       default:
         return (
           <>
@@ -66,14 +36,6 @@ const App: React.FC = () => {
             <Reference />
             <div className="main-page-stripe" />
             <Gallery />
-            <div className="section-header">
-              <h2>Contact</h2>
-            </div>
-            <ContactTile />
-            <div className="section-header">
-              <h2>Resources</h2>
-            </div>
-            <ResourcesTile />
           </>
         )
     }
@@ -81,9 +43,20 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <Navigation onSectionChange={setCurrentSection} />
+      <Navigation />
       <main className="main-content">
-        {renderSection()}
+        <Scene />
+        <div className="main-page-stripe" />
+        <Gallery />
+        <Reference />
+        <div className="contact-header">
+          <h2>Contact</h2>
+        </div>
+        <ContactTile />
+        <div className="resources-header">
+          <h2>Resources</h2>
+        </div>
+        <ResourcesTile />
       </main>
       <div className="copyright">
         © {new Date().getFullYear()} Sunset Landscaping. All rights reserved.

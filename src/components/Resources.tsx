@@ -1,3 +1,5 @@
+import React from 'react'
+
 interface Resource {
   id: number
   title: string
