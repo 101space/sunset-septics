@@ -23,12 +23,36 @@ const App: React.FC = () => {
             <Reference />
             <div className="main-page-stripe" />
             <Gallery />
+            <div className="contact-header">
+              <h2>Contact</h2>
+            </div>
+            <ContactTile />
+            <div className="resources-header">
+              <h2>Resources</h2>
+            </div>
+            <ResourcesTile />
           </>
         )
       case 'resources':
-        return <Resources />
+        return (
+          <>
+            <Resources />
+            <div className="contact-header">
+              <h2>Contact</h2>
+            </div>
+            <ContactTile />
+          </>
+        )
       case 'contact':
-        return <Contact />
+        return (
+          <>
+            <Contact />
+            <div className="resources-header">
+              <h2>Resources</h2>
+            </div>
+            <ResourcesTile />
+          </>
+        )
       default:
         return (
           <>
@@ -36,6 +60,14 @@ const App: React.FC = () => {
             <Reference />
             <div className="main-page-stripe" />
             <Gallery />
+            <div className="contact-header">
+              <h2>Contact</h2>
+            </div>
+            <ContactTile />
+            <div className="resources-header">
+              <h2>Resources</h2>
+            </div>
+            <ResourcesTile />
           </>
         )
     }
@@ -46,14 +78,6 @@ const App: React.FC = () => {
       <Navigation onSectionChange={setCurrentSection} />
       <main className="main-content">
         {renderSection()}
-        <div className="contact-header">
-          <h2>Contact</h2>
-        </div>
-        <ContactTile />
-        <div className="resources-header">
-          <h2>Resources</h2>
-        </div>
-        <ResourcesTile />
       </main>
       <div className="copyright">
         © {new Date().getFullYear()} Sunset Landscaping. All rights reserved.
