@@ -1250,26 +1250,27 @@ body {
 
 /* Loading State */
 .loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  color: var(--color-text);
-  font-size: 1.2rem;
-  gap: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  border-radius: 1rem;
-  backdrop-filter: blur(8px);
+  align-items: center;
+  background-color: var(--color-background);
+  z-index: 1000;
 }
 
 .loading-spinner {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border: 3px solid var(--color-primary);
   border-top: 3px solid transparent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
 }
 
 @keyframes spin {
@@ -1284,17 +1285,11 @@ body {
   height: 100vh;
   background-color: var(--color-background);
   overflow: hidden;
-  transition: opacity 0.3s ease;
 }
 
-.scene-canvas {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background-color: var(--color-background);
-}
-
-.scene-canvas canvas {
+.scene-container canvas {
+  width: 100% !important;
+  height: 100% !important;
   background-color: var(--color-background) !important;
 }
 

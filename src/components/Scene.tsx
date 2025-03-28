@@ -1,103 +1,61 @@
-import { useRef, useEffect, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { OrbitControls, useGLTF, Environment, Float, Html } from '@react-three/drei'
-import { Group } from 'three'
-import { MODEL_URL } from '../config/cdn'
 import { Canvas } from '@react-three/fiber'
-import * as THREE from 'three'
+import { OrbitControls, useGLTF, Html } from '@react-three/drei'
+import { Suspense, useEffect, useState } from 'react'
+import { MODEL_URL } from '../config/cdn'
 
-function Model() {
+const Model = () => {
   const { scene } = useGLTF(MODEL_URL)
-  const groupRef = useRef<Group>(null)
-  const [isLoaded, setIsLoaded] = useState(false)
+  return <primitive object={scene} />
+}
+
+const Scene: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    if (groupRef.current) {
-      // Center the model
-      const box = new THREE.Box3().setFromObject(groupRef.current)
-      const center = box.getCenter(new THREE.Vector3())
-      groupRef.current.position.sub(center)
-      setIsLoaded(true)
-    }
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+    return () => clearTimeout(timer)
   }, [])
 
-  useFrame(() => {
-    if (groupRef.current) {
-      // Add subtle rotation
-      groupRef.current.rotation.y += 0.001
-    }
-  })
-
   return (
-    <>
-      {!isLoaded && (
-        <Html center>
-          <div className="loading-overlay">
-            <div className="loading-spinner"></div>
-            <p>Loading 3D Model...</p>
-          </div>
-        </Html>
-      )}
-      <Float
-        speed={1.5}
-        rotationIntensity={0.2}
-        floatIntensity={0.5}
+    <div className="scene-container">
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 75 }}
+        style={{ 
+          background: 'transparent',
+          width: '100%',
+          height: '100%'
+        }}
+        gl={{ 
+          preserveDrawingBuffer: true,
+          alpha: true,
+          antialias: true
+        }}
       >
-        <group ref={groupRef}>
-          <primitive object={scene} />
-        </group>
-      </Float>
-    </>
+        <color attach="background" args={['#011627']} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <Suspense fallback={null}>
+          <Model />
+        </Suspense>
+        <OrbitControls 
+          enableZoom={true} 
+          enablePan={true} 
+          enableRotate={true}
+          minDistance={2}
+          maxDistance={10}
+          target={[0, 0, 0]}
+        />
+      </Canvas>
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="loading-spinner"></div>
+          <p>Loading 3D Model...</p>
+        </div>
+      )}
+    </div>
   )
 }
 
-// Preload the model
-useGLTF.preload(MODEL_URL)
-
-export function Scene() {
-  return (
-    <div className="scene-container">
-      <div className="scene-overlay">
-        <h2>Interactive 3D Model</h2>
-        <p>Drag to rotate, scroll to zoom</p>
-      </div>
-      <div className="scene-canvas">
-        <div className="scene-controls">
-          <button className="scene-button" onClick={() => window.location.href = '#contact'}>
-            Get a Quote
-          </button>
-        </div>
-        <Canvas
-          camera={{ position: [0, 0, 5], fov: 45 }}
-          gl={{ 
-            antialias: true,
-            alpha: true,
-            preserveDrawingBuffer: true
-          }}
-          style={{ 
-            background: 'transparent',
-            width: '100%',
-            height: '100%'
-          }}
-        >
-          <color attach="background" args={['#011627']} />
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <Model />
-          <OrbitControls
-            enableZoom={true}
-            enablePan={true}
-            enableRotate={true}
-            zoomSpeed={0.6}
-            panSpeed={0.5}
-            rotateSpeed={0.4}
-            minDistance={3}
-            maxDistance={10}
-            target={[0, 0, 0]}
-          />
-          <Environment preset="city" />
-        </Canvas>
-      </div>
-    </div>
-  )
-} 
+export default Scene 
