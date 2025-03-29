@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 interface GalleryItem {
   id: number
@@ -108,6 +108,32 @@ export function Gallery() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({})
 
+  // Hide reference numbers and sidebar cards when image is selected
+  useEffect(() => {
+    const referenceContainer = document.querySelector('.reference-container') as HTMLElement;
+    const contactHeader = document.querySelector('.contact-header') as HTMLElement;
+    const resourcesHeader = document.querySelector('.resources-header') as HTMLElement;
+    
+    if (selectedImage) {
+      // Hide elements when image is selected
+      if (referenceContainer) referenceContainer.style.display = 'none';
+      if (contactHeader) contactHeader.style.display = 'none';
+      if (resourcesHeader) resourcesHeader.style.display = 'none';
+    } else {
+      // Show elements when image is closed
+      if (referenceContainer) referenceContainer.style.display = '';
+      if (contactHeader) contactHeader.style.display = '';
+      if (resourcesHeader) resourcesHeader.style.display = '';
+    }
+
+    // Cleanup function
+    return () => {
+      if (referenceContainer) referenceContainer.style.display = '';
+      if (contactHeader) contactHeader.style.display = '';
+      if (resourcesHeader) resourcesHeader.style.display = '';
+    };
+  }, [selectedImage]);
+
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const scrollAmount = 300 // Width of one item
@@ -122,6 +148,10 @@ export function Gallery() {
   const handleImageError = (id: number) => {
     console.error(`Failed to load image for item ${id}`);
     setImageErrors(prev => ({...prev, [id]: true}));
+  }
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
   }
 
   return (
@@ -190,15 +220,18 @@ export function Gallery() {
       {selectedImage && (
         <div 
           className="gallery-modal" 
-          onClick={() => setSelectedImage(null)}
+          onClick={handleCloseModal}
           role="dialog"
           aria-modal="true"
           aria-labelledby={`gallery-item-title-${selectedImage.id}`}
         >
-          <div className="gallery-modal-content">
+          <div 
+            className="gallery-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button 
               className="close-button" 
-              onClick={() => setSelectedImage(null)}
+              onClick={handleCloseModal}
               aria-label="Close gallery"
             >
               ×

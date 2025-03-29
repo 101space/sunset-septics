@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Scene } from './components/Scene'
 import { Gallery } from './components/Gallery'
 import { Reference } from './components/Reference'
@@ -12,9 +12,6 @@ const App: React.FC = () => {
     <div className="app">
       <Navigation />
       <main className="main-content">
-        {/* Remove asset test in production */}
-        {/* <AssetTest /> */}
-        
         {/* Home section (Scene, Gallery, Reference) */}
         <div id="home">
           <Scene />
