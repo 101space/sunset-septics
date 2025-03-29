@@ -1,4 +1,4 @@
-import React from 'react'
+import '../styles/Resources.css'
 
 interface Resource {
   id: number

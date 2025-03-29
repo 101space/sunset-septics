@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from 'react'
-import { useGLTF, Environment, OrbitControls } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
-import { Group } from 'three'
-import { Canvas } from '@react-three/fiber'
+import { useEffect, useRef } from 'react'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Environment, OrbitControls, useGLTF } from '@react-three/drei'
+import { Group, Object3D } from 'three'
 import * as THREE from 'three'
 
+// Use an absolute path without the base prefix - Vite will handle the correct path
+const MODEL_PATH = '/assets/septic.glb'
+
 function Model() {
-  const { scene } = useGLTF('/assets/septic.glb')
+  const { scene } = useGLTF(MODEL_PATH)
   const groupRef = useRef<Group>(null)
   const { camera } = useThree()
   const mousePosition = useRef({ x: 0, y: 0 })
@@ -19,48 +21,43 @@ function Model() {
     camera.lookAt(0, 0, 0)
 
     // Adjust material properties for specific parts
-    scene.traverse((child) => {
+    scene.traverse((child: Object3D) => {
       if (child instanceof THREE.Mesh) {
         console.log('Mesh name:', child.name); // Log all mesh names for debugging
 
+        // Ensure material is MeshStandardMaterial before accessing properties
+        let material = child.material as THREE.MeshStandardMaterial
+
         // Make tank and related parts semi-transparent
         if (child.name.toLowerCase().includes('tank')) {
-          child.material.transparent = true;
-          child.material.opacity = 0.6;
-          if (child.material instanceof THREE.MeshStandardMaterial) {
-            child.material.roughness = 0.4;
-            child.material.metalness = 0.3;
-          }
+          material.transparent = true;
+          material.opacity = 0.6;
+          material.roughness = 0.4;
+          material.metalness = 0.3;
         } 
         // Make distribution box more visible
         else if (child.name.toLowerCase().includes('distribution') || 
                  child.name.toLowerCase().includes('box')) {
-          child.material.transparent = true;
-          child.material.opacity = 0.7;
-          if (child.material instanceof THREE.MeshStandardMaterial) {
-            child.material.roughness = 0.3;
-            child.material.metalness = 0.4;
-            child.material.color.setHex(0x666666);
-          }
+          material.transparent = true;
+          material.opacity = 0.7;
+          material.roughness = 0.3;
+          material.metalness = 0.4;
+          material.color.setHex(0x666666);
         }
         // Make pipes more visible
         else if (child.name.toLowerCase().includes('pipe')) {
-          child.material.transparent = false;
-          if (child.material instanceof THREE.MeshStandardMaterial) {
-            child.material.roughness = 0.2;
-            child.material.metalness = 0.6;
-            child.material.color.setHex(0x444444);
-          }
+          material.transparent = false;
+          material.roughness = 0.2;
+          material.metalness = 0.6;
+          material.color.setHex(0x444444);
         }
         // Adjust dirt and gravel
         else if (child.name.toLowerCase().includes('dirt') || 
                  child.name.toLowerCase().includes('gravel')) {
-          child.material.transparent = true;
-          child.material.opacity = 0.85;
-          if (child.material instanceof THREE.MeshStandardMaterial) {
-            child.material.roughness = 0.8;
-            child.material.metalness = 0.1;
-          }
+          material.transparent = true;
+          material.opacity = 0.85;
+          material.roughness = 0.8;
+          material.metalness = 0.1;
         }
       }
     });
@@ -100,7 +97,11 @@ function Model() {
 
 export function Scene() {
   return (
-    <div className="canvas-container">
+    <div 
+      className="canvas-container"
+      role="img" 
+      aria-label="Interactive 3D model of a septic system showing the tank, distribution box, pipes, and drain field"
+    >
       <Canvas
         camera={{
           position: [-5, 10, 15],
@@ -149,4 +150,4 @@ export function Scene() {
 }
 
 // Preload the model
-useGLTF.preload('/assets/septic.glb') 
+useGLTF.preload(MODEL_PATH) 

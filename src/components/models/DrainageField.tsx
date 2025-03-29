@@ -1,4 +1,3 @@
-import React from 'react'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Group } from 'three'

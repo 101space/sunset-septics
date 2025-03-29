@@ -1,0 +1,46 @@
+.header {
+  /* Corresponds to .resources-header */
+  /* Add specific header styles if needed, or manage globally/in App.module.css */
+}
+
+.tile {
+  /* Corresponds to .resources-tile */
+  /* Add styles for the tile container if needed */
+}
+
+.content {
+  /* Corresponds to .resources-content */
+  /* Add styles for the content area if needed */
+}
+
+.title {
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+}
+
+.link:hover,
+.link:focus {
+  /* Add hover/focus styles for accessibility and visual feedback */
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  outline: none; /* Or provide a custom focus outline */
+} 
