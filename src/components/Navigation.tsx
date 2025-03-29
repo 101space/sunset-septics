@@ -1,23 +1,8 @@
 import React from 'react';
 
-// Add optional props to accept a navigation function if needed later
-interface NavigationProps {
-  onNavigate?: (section: string) => void;
-}
-
-const Navigation: React.FC<NavigationProps> = ({ onNavigate }) => {
-  // Function to handle navigation clicks
-  const handleNavClick = (section: string) => {
-    if (onNavigate) {
-      onNavigate(section);
-    } else {
-      // Fallback to direct scrolling when no handler provided
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
+// Props interface removed since we're not using navigation props currently
+const Navigation: React.FC = () => {
+  // Navigation function removed as it's not currently used
 
   return (
     <nav className="navigation">

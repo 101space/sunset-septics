@@ -35,8 +35,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    port: 3000,
-    open: true
+    host: true,
   },
   build: {
     target: 'esnext',
@@ -58,5 +57,5 @@ export default defineConfig({
       },
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/sunset_septics/' : '/'
+  base: '/sunset-septics/',
 }) 
