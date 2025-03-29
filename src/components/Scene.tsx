@@ -4,8 +4,10 @@ import { Environment, OrbitControls, useGLTF } from '@react-three/drei'
 import { Group, Object3D } from 'three'
 import * as THREE from 'three'
 
-// Use an absolute path without the base prefix - Vite will handle the correct path
-const MODEL_PATH = '/assets/septic.glb'
+// Get the base URL for GitHub Pages
+const basePath = import.meta.env.BASE_URL;
+// Use the base path for the model
+const MODEL_PATH = `${basePath}assets/septic.glb`
 
 function Model() {
   const { scene } = useGLTF(MODEL_PATH)

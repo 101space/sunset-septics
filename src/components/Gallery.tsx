@@ -8,62 +8,65 @@ interface GalleryItem {
   color: string // Fallback color for errors
 }
 
+// Get the base URL for GitHub Pages
+const basePath = import.meta.env.BASE_URL;
+
 // Create gallery items with actual image paths
 const galleryItems: GalleryItem[] = [
   {
     id: 1,
     title: 'Septic System Installation',
     description: 'Professional installation of a new septic system',
-    imagePath: '/assets/gallery pics/5WDShKcjREuh6fbLj8PTNA.jpg', // Corrected path to include assets
+    imagePath: `${basePath}assets/gallery pics/5WDShKcjREuh6fbLj8PTNA.jpg`, // Path with base URL
     color: '#FF6B35' // Fallback color
   },
   {
     id: 2,
     title: 'Drain Field Construction',
     description: 'Expert drain field construction and layout',
-    imagePath: '/assets/gallery pics/bw9p-1liTNyqGfwoEcHCSA.jpg',
+    imagePath: `${basePath}assets/gallery pics/bw9p-1liTNyqGfwoEcHCSA.jpg`,
     color: '#2EC4B6'
   },
   {
     id: 3,
     title: 'Tank Installation',
     description: 'Precise septic tank placement and installation',
-    imagePath: '/assets/gallery pics/SF85vaNATsSiHkMX-iU61A.jpg',
+    imagePath: `${basePath}assets/gallery pics/SF85vaNATsSiHkMX-iU61A.jpg`,
     color: '#FF9F1C'
   },
   {
     id: 4,
     title: 'System Maintenance',
     description: 'Regular maintenance and inspection services',
-    imagePath: '/assets/gallery pics/6Q-Lm0f9TRi_G5tEJUozDw.jpg',
+    imagePath: `${basePath}assets/gallery pics/6Q-Lm0f9TRi_G5tEJUozDw.jpg`,
     color: '#FF6B35'
   },
   {
     id: 5,
     title: 'Site Preparation',
     description: 'Thorough site preparation and excavation',
-    imagePath: '/assets/gallery pics/1avZcdzLTbuX2Uohb7b1BA.jpg',
+    imagePath: `${basePath}assets/gallery pics/1avZcdzLTbuX2Uohb7b1BA.jpg`,
     color: '#2EC4B6'
   },
   {
     id: 6,
     title: 'Quality Assurance',
     description: 'Final inspection and quality checks',
-    imagePath: '/assets/gallery pics/PckAqcuiRtGdp7uOembnxg.jpg',
+    imagePath: `${basePath}assets/gallery pics/PckAqcuiRtGdp7uOembnxg.jpg`,
     color: '#FF9F1C'
   },
   {
     id: 7,
     title: 'Professional Service',
     description: 'Dedicated team ensuring customer satisfaction',
-    imagePath: '/assets/gallery pics/y9qgG11TTxmlkz-ffW-cUA.jpg',
+    imagePath: `${basePath}assets/gallery pics/y9qgG11TTxmlkz-ffW-cUA.jpg`,
     color: '#FF6B35'
   },
   {
     id: 8,
     title: 'Modern Equipment',
     description: 'State-of-the-art equipment for precise work',
-    imagePath: '/assets/gallery pics/XCL8X_YuQoenLA-VASo95Q.jpg',
+    imagePath: `${basePath}assets/gallery pics/XCL8X_YuQoenLA-VASo95Q.jpg`,
     color: '#2EC4B6'
   }
 ];
