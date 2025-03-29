@@ -57,5 +57,5 @@ export default defineConfig({
       },
     },
   },
-  base: '/',
+  base: '/sunset-septics/',
 }) 
