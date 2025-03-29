@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Scene } from './components/Scene'
 import { Gallery } from './components/Gallery'
 import { Reference } from './components/Reference'
