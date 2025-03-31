@@ -21,6 +21,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 1
+      - name: Clean up
+        run: |
+          rm -rf node_modules/.cache/gh-pages
+          git submodule deinit -f --all
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
