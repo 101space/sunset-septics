@@ -75,4 +75,5 @@ export default defineConfig({
     exclude: ['three'],
   },
   assetsInclude: ['**/*.glb'],
+  publicDir: 'public',
 }) 

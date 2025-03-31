@@ -9,7 +9,7 @@ const basePath = import.meta.env.BASE_URL;
 console.log('Base URL:', basePath); // Debug log
 
 // Use the base path for the model
-const MODEL_PATH = `${basePath}assets/septic.glb`;
+const MODEL_PATH = `${basePath}septic.glb`;
 console.log('Model path:', MODEL_PATH); // Debug log
 
 // Camera positions for different sections
@@ -65,6 +65,7 @@ interface ModelProps {
 }
 
 function Model({ activeSection, onAnimationComplete }: ModelProps) {
+  const [modelError, setModelError] = useState<Error | null>(null);
   const { scene } = useGLTF(MODEL_PATH, true);
   const groupRef = useRef<Group>(null)
   const { camera } = useThree()
@@ -300,10 +301,16 @@ function Model({ activeSection, onAnimationComplete }: ModelProps) {
   useEffect(() => {
     const handleError = (event: ErrorEvent) => {
       console.error('Error loading model:', event.error);
+      setModelError(event.error);
     };
     window.addEventListener('error', handleError);
     return () => window.removeEventListener('error', handleError);
   }, []);
+
+  if (modelError) {
+    console.error('Failed to load model:', modelError);
+    return null;
+  }
 
   return (
     <group ref={groupRef}>
