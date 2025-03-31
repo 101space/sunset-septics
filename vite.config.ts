@@ -45,7 +45,7 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false,
       },
     },
     rollupOptions: {
@@ -58,5 +58,5 @@ export default defineConfig({
       },
     },
   },
-  base: '/sunset-septics/',
+  base: process.env.NODE_ENV === 'production' ? '/sunset-septics/' : '/',
 }) 

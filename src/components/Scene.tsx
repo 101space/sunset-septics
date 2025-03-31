@@ -6,8 +6,11 @@ import * as THREE from 'three'
 
 // Get the base URL for GitHub Pages
 const basePath = import.meta.env.BASE_URL;
-// Use the base path for the model, ensuring it starts with a slash
-const MODEL_PATH = `${basePath.startsWith('/') ? basePath : '/' + basePath}assets/septic.glb`
+console.log('Base URL:', basePath); // Debug log
+
+// Use the base path for the model
+const MODEL_PATH = new URL('/assets/septic.glb', import.meta.url).href;
+console.log('Model path:', MODEL_PATH); // Debug log
 
 // Camera positions for different sections
 const MODEL_POSITIONS = {
