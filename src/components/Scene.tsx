@@ -9,7 +9,7 @@ const basePath = import.meta.env.BASE_URL;
 console.log('Base URL:', basePath); // Debug log
 
 // Use the base path for the model
-const MODEL_PATH = new URL('/assets/septic.glb', import.meta.url).href;
+const MODEL_PATH = `${basePath}assets/septic.glb`;
 console.log('Model path:', MODEL_PATH); // Debug log
 
 // Camera positions for different sections
