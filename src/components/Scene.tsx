@@ -6,8 +6,8 @@ import * as THREE from 'three'
 
 // Get the base URL for GitHub Pages
 const basePath = import.meta.env.BASE_URL;
-// Use the base path for the model
-const MODEL_PATH = `${basePath}assets/septic.glb`
+// Use the base path for the model, ensuring it starts with a slash
+const MODEL_PATH = `${basePath.startsWith('/') ? basePath : '/' + basePath}assets/septic.glb`
 
 // Camera positions for different sections
 const MODEL_POSITIONS = {
@@ -62,7 +62,7 @@ interface ModelProps {
 }
 
 function Model({ activeSection, onAnimationComplete }: ModelProps) {
-  const { scene } = useGLTF(MODEL_PATH)
+  const { scene } = useGLTF(MODEL_PATH, true);
   const groupRef = useRef<Group>(null)
   const { camera } = useThree()
   const mousePosition = useRef({ x: 0, y: 0 })
@@ -293,6 +293,14 @@ function Model({ activeSection, onAnimationComplete }: ModelProps) {
   const easeOutQuintic = (x: number): number => {
     return 1 - Math.pow(1 - x, 5);
   }
+
+  useEffect(() => {
+    const handleError = (event: ErrorEvent) => {
+      console.error('Error loading model:', event.error);
+    };
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
+  }, []);
 
   return (
     <group ref={groupRef}>
