@@ -393,6 +393,6 @@ export function Scene({ modelSection = 'overview' }: SceneProps) {
 }
 
 // Preload the model
-useGLTF.preload(MODEL_PATH)
+useGLTF.preload(MODEL_PATH);
 
 export default Scene; 

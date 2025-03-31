@@ -37,6 +37,11 @@ export default defineConfig({
   ],
   server: {
     host: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
   },
   build: {
     target: 'esnext',
@@ -66,4 +71,8 @@ export default defineConfig({
       '@assets': path.resolve(__dirname, './public/assets'),
     },
   },
+  optimizeDeps: {
+    exclude: ['three'],
+  },
+  assetsInclude: ['**/*.glb'],
 }) 
