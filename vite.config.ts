@@ -1,11 +1,38 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   plugins: [
     react(),
-    // PWA plugin removed temporarily to allow successful build
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['favicon.svg', 'apple-touch-icon.png', 'masked-icon.svg'],
+      manifest: {
+        name: 'Sunset Septics',
+        short_name: 'Sunset Septics',
+        description: 'Professional septic system installation and maintenance services',
+        theme_color: '#2EC4B6',
+        icons: [
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          }
+        ]
+      }
+    })
   ],
   server: {
     host: true,
@@ -26,6 +53,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           three: ['three'],
+          'react-three': ['@react-three/fiber', '@react-three/drei'],
         },
       },
     },

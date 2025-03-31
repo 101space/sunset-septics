@@ -12,32 +12,65 @@ const links: ResourceLink[] = [
     href: 'https://www.ontario.ca/page/septic-systems',
     text: 'Ontario Septic Systems Guide',
     icon: '📋'
-  },
-  {
-    href: 'https://www.oowa.org/',
-    text: 'Ontario Onsite Wastewater Association',
-    icon: '🏛️'
-  },
-  {
-    href: 'https://www.ontario.ca/laws/regulation/120332',
-    text: 'Ontario Building Code - Part 8',
-    icon: '📘'
-  },
-  {
-    href: 'https://healthunit.org/health-information/septic-sewage-safety/septic-systems/',
-    text: 'Health Unit Septic Guidelines',
-    icon: '🏥'
-  },
-  {
-    href: 'https://www.tarion.com/homeowners/your-warranty-coverage/septic-systems',
-    text: 'Tarion Warranty Guidelines',
-    icon: '🔒'
-  },
+  }
 ];
+
+// Customer testimonial structure
+interface CustomerReview {
+  name: string;
+  location: string;
+  text: string;
+  rating: number;
+}
+
+const reviews: CustomerReview[] = [
+  {
+    name: "Nick and Carlie",
+    location: "Copetown",
+    text: "Sunset Septics installed our system last year and we couldn't be happier. Their team was professional and took the time to explain everything about our new septic system.",
+    rating: 5
+  },
+  {
+    name: "Mike Thompson",
+    location: "Ancaster",
+    text: "After having issues with our old septic system, Sunset came in and diagnosed the problem quickly. Their maintenance service is reliable and thorough.",
+    rating: 5
+  },
+  {
+    name: "Jim Johnston",
+    location: "Cambridge",
+    text: "We've been using Sunset for regular maintenance for years. They're always punctual, professional, and keep our system running perfectly.",
+    rating: 4
+  }
+];
+
+// Function to render stars for ratings
+const renderStars = (rating: number) => {
+  const stars = [];
+  for (let i = 0; i < 5; i++) {
+    stars.push(
+      <span key={i} style={{ 
+        color: i < rating ? 'var(--color-primary)' : '#ccc',
+        fontSize: '1.2rem',
+        marginRight: '2px'
+      }}>
+        ★
+      </span>
+    );
+  }
+  return stars;
+};
 
 const ResourcesTile: React.FC = () => {
   return (
-    <div className="resources-tile glass-card" style={{ borderLeft: '3px solid var(--color-secondary)' }}>
+    <div className="resources-tile glass-card" style={{ 
+      borderLeft: '3px solid var(--color-secondary)',
+      height: '600px',
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '20px',
+      overflow: 'hidden'
+    }}>
       <h3 style={{ 
         color: 'var(--color-secondary)',
         marginBottom: '1.5rem',
@@ -45,13 +78,18 @@ const ResourcesTile: React.FC = () => {
         fontWeight: '700',
         textAlign: 'center',
         textShadow: '0 0 8px rgba(46, 196, 182, 0.4)',
+        flex: '0 0 auto'
       }}>
-        Septic System Resources
+        Resources & Reviews
       </h3>
+      
+      {/* Resource link */}
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '16px'
+        gap: '16px',
+        marginBottom: '2rem',
+        flex: '0 0 auto'
       }}>
         {links.map((link) => (
           <a
@@ -75,7 +113,7 @@ const ResourcesTile: React.FC = () => {
               e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
               e.currentTarget.style.border = '1px solid var(--color-secondary)';
               e.currentTarget.style.color = 'var(--color-secondary)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.transform = 'translateY(-1px)';
               e.currentTarget.style.boxShadow = '0 8px 20px 0 rgba(0, 0, 0, 0.25), 0 0 10px rgba(46, 196, 182, 0.2)';
             }}
             onMouseOut={(e) => {
@@ -99,6 +137,106 @@ const ResourcesTile: React.FC = () => {
           </a>
         ))}
       </div>
+      
+      {/* Customer reviews section */}
+      <h4 style={{ 
+        color: 'var(--color-primary)',
+        marginBottom: '1rem',
+        fontSize: '1.3rem',
+        fontWeight: '600',
+        flex: '0 0 auto'
+      }}>
+        Customer Testimonials
+      </h4>
+      
+      <div className="reviews-container" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
+        overflowY: 'scroll',
+        flex: '1 1 auto',
+        paddingRight: '16px',
+        height: '100%',
+        position: 'relative'
+      }}>
+        {reviews.map((review, index) => (
+          <div 
+            key={index}
+            className="glass"
+            style={{
+              padding: '16px',
+              borderRadius: '12px',
+              background: 'var(--glass-background)',
+              border: '1px solid var(--glass-border)',
+              boxShadow: 'var(--glass-shadow)',
+              flex: '0 0 auto',
+              width: 'calc(100% - 2px)'
+            }}
+          >
+            <div style={{ marginBottom: '8px' }}>
+              {renderStars(review.rating)}
+            </div>
+            <p style={{ 
+              fontSize: '0.95rem',
+              fontStyle: 'italic',
+              marginBottom: '10px',
+              lineHeight: '1.4'
+            }}>
+              "{review.text}"
+            </p>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              fontSize: '0.9rem',
+              fontWeight: '500'
+            }}>
+              <span>{review.name}, {review.location}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      {/* Add custom scrollbar styles */}
+      <style>
+        {`
+          .reviews-container::-webkit-scrollbar {
+            width: 6px;
+            background-color: transparent;
+          }
+          
+          .reviews-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+          }
+          
+          .reviews-container::-webkit-scrollbar-thumb {
+            background: var(--color-secondary);
+            border-radius: 10px;
+            min-height: 40px;
+          }
+          
+          .reviews-container::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary);
+          }
+
+          .reviews-container::-webkit-scrollbar-button:start:decrement,
+          .reviews-container::-webkit-scrollbar-button:end:increment {
+            display: none;
+            height: 0;
+            width: 0;
+          }
+
+          .reviews-container {
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-secondary) transparent;
+            -ms-overflow-style: none;
+          }
+
+          .reviews-container::-webkit-scrollbar-corner {
+            background: transparent;
+          }
+        `}
+      </style>
     </div>
   );
 };

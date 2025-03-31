@@ -8,6 +8,10 @@ interface GalleryItem {
   color: string // Fallback color for errors
 }
 
+interface GalleryProps {
+  onImageSelect: (selected: boolean) => void;
+}
+
 // Get the base URL for GitHub Pages
 const basePath = import.meta.env.BASE_URL;
 
@@ -103,7 +107,7 @@ const PlaceholderSVG = ({ title, color }: { title: string, color: string }) => {
   );
 };
 
-export function Gallery() {
+export function Gallery({ onImageSelect }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({})
@@ -119,11 +123,13 @@ export function Gallery() {
       if (referenceContainer) referenceContainer.style.display = 'none';
       if (contactHeader) contactHeader.style.display = 'none';
       if (resourcesHeader) resourcesHeader.style.display = 'none';
+      onImageSelect(true);
     } else {
       // Show elements when image is closed
       if (referenceContainer) referenceContainer.style.display = '';
       if (contactHeader) contactHeader.style.display = '';
       if (resourcesHeader) resourcesHeader.style.display = '';
+      onImageSelect(false);
     }
 
     // Cleanup function
@@ -131,8 +137,9 @@ export function Gallery() {
       if (referenceContainer) referenceContainer.style.display = '';
       if (contactHeader) contactHeader.style.display = '';
       if (resourcesHeader) resourcesHeader.style.display = '';
+      onImageSelect(false);
     };
-  }, [selectedImage]);
+  }, [selectedImage, onImageSelect]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
