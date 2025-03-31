@@ -49,6 +49,7 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: true,
     minify: 'terser',
+    assetsInlineLimit: 0,
     terserOptions: {
       compress: {
         drop_console: false,
@@ -60,6 +61,12 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           three: ['three'],
           'react-three': ['@react-three/fiber', '@react-three/drei'],
+        },
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.glb')) {
+            return 'assets/[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
         },
       },
     },
