@@ -71,7 +71,7 @@ export default defineConfig({
       },
     },
   },
-  base: '/sunset-septics/',
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
