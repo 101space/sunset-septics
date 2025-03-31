@@ -64,7 +64,7 @@ export default defineConfig({
       },
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/sunset-septics/' : '/',
+  base: '/sunset-septics/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

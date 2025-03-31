@@ -8,8 +8,8 @@ import * as THREE from 'three'
 const basePath = import.meta.env.BASE_URL;
 console.log('Base URL:', basePath); // Debug log
 
-// Use the base path for the model
-const MODEL_PATH = `${basePath}septic.glb`;
+// Use the base path for the model, ensuring it starts with a forward slash
+const MODEL_PATH = `${basePath.startsWith('/') ? basePath : '/' + basePath}septic.glb`;
 console.log('Model path:', MODEL_PATH); // Debug log
 
 // Camera positions for different sections
