@@ -6,7 +6,7 @@ export function UI() {
           onClick={() => window.location.reload()}
           style={{
             padding: '10px 20px',
-            backgroundColor: 'var(--color-primary)',
+            backgroundColor: 'var(--color-secondary)',
             color: 'white',
             border: 'none',
             borderRadius: '5px',

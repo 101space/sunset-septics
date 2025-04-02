@@ -829,7 +829,7 @@ body {
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   transition: all 0.3s ease;
-  background-color: #007bff;
+  background-color: var(--color-secondary);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -840,8 +840,8 @@ body {
 }
 
 .submit-button:hover {
-  background: rgba(255, 107, 53, 0.3);
-  border-color: var(--color-primary);
+  background: rgba(46, 196, 182, 0.3);
+  border-color: var(--color-secondary);
   transform: translateY(-1px);
 }
 
@@ -1470,8 +1470,8 @@ body {
 }
 
 .nav-button:hover {
-  background: rgba(255, 107, 53, 0.3);
-  border-color: var(--color-primary);
+  background: rgba(46, 196, 182, 0.3);
+  border-color: var(--color-secondary);
   transform: translateY(-3px);
 }
 
@@ -1546,8 +1546,8 @@ body {
 }
 
 .submit-button:hover {
-  background: rgba(255, 107, 53, 0.3);
-  border-color: var(--color-primary);
+  background: rgba(46, 196, 182, 0.3);
+  border-color: var(--color-secondary);
   transform: translateY(-1px);
 }
 
@@ -1614,8 +1614,8 @@ body {
 }
 
 .nav-button:hover {
-  background: rgba(255, 107, 53, 0.3);
-  border-color: var(--color-primary);
+  background: rgba(46, 196, 182, 0.3);
+  border-color: var(--color-secondary);
   transform: translateY(-3px);
 }
 
