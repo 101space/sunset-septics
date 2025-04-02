@@ -5,10 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "npm run optimize-assets && tsc && vite build",
+    "build": "npm run optimize-assets && tsc && vite build && cp CNAME dist/",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "optimize-assets": "node scripts/generate-pwa-icons.js && node scripts/optimize-images.js"
   },
   "dependencies": {
