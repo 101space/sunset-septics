@@ -30,6 +30,8 @@ jobs:
         run: npm ci
       - name: Build project
         run: npm run build
+      - name: Copy CNAME
+        run: cp CNAME dist/ || echo "CNAME already exists in dist/"
       - name: Debug dist folder
         run: ls -la dist
       - name: Upload artifact
