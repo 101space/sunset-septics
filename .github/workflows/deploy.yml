@@ -37,6 +37,16 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+        
+      - name: Update index.html paths
+        run: |
+          sed -i 's|src="/|src="./|g' index.html
+          sed -i 's|href="/|href="./|g' index.html
+      
+      - name: Ensure base is relative in vite.config.ts
+        run: |
+          sed -i 's|base:.*,|base: "./",|' vite.config.ts
+          
       - name: Build project
         run: npm run build
       - name: Copy CNAME
