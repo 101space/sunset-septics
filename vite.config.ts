@@ -71,7 +71,7 @@ export default defineConfig({
       },
     },
   },
-  base: './',  // Use relative paths
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
