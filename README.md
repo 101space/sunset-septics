@@ -1,14 +1,15 @@
 ﻿# Sunset Septics Website
 
-A modern, interactive website for Sunset Septics showcasing their septic system installation and maintenance services. Deployed on Vercel.
+A modern, responsive website for Sunset Septics showcasing their septic system installation and maintenance services. Built with React, TypeScript, and Three.js for interactive 3D visualizations.
 
 ## Features
 
-- Interactive 3D model of a septic system
-- Image gallery of past projects
-- Responsive design
-- Progressive Web App (PWA) support
-- Accessibility features
+- Interactive 3D model of septic system components
+- Responsive design for all devices
+- Dark mode support
+- Progressive Web App (PWA) capabilities
+- SEO optimized
+- Fast loading with Vite
 
 ## Tech Stack
 
@@ -16,61 +17,68 @@ A modern, interactive website for Sunset Septics showcasing their septic system 
 - TypeScript
 - Three.js with React Three Fiber
 - Vite
-- PWA support
+- GSAP for animations
+- React Spring for UI animations
 
-## Development
+## Development Setup
 
-1. Install dependencies:
+### Prerequisites
+
+- Node.js 18.x or later
+- npm 9.x or later
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/101space/sunset-septics-v2.git
+cd sunset-septics-v2
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Start development server:
+3. Start the development server:
 ```bash
 npm run dev
 ```
 
-3. Build for production:
+4. Build for production:
 ```bash
 npm run build
-```
-
-4. Preview production build:
-```bash
-npm run preview
 ```
 
 ## Project Structure
 
 ```
-src/
-├── components/     # React components
-├── constants/      # Constants and configuration
-├── contexts/       # React contexts
-├── hooks/         # Custom React hooks
-├── styles/        # Global styles and CSS modules
-├── tests/         # Test files
-├── types/         # TypeScript type definitions
-└── utils/         # Utility functions
+sunset-septics-v2/
+├── src/
+│   ├── components/     # React components
+│   ├── models/        # 3D model components
+│   ├── contexts/      # React contexts
+│   ├── styles/        # Global styles
+│   └── utils/         # Utility functions
+├── public/            # Static assets
+├── assets/           # Media assets
+└── dist/             # Production build
 ```
 
 ## Deployment
 
-The site is deployed on Vercel for optimal performance and reliability.
+This project is deployed on Vercel with automatic deployments from the main branch. The deployment configuration includes:
 
-To build for deployment:
-```bash
-npm run build
-```
+- Automatic HTTPS
+- Global CDN
+- Asset optimization
+- SPA routing support
 
-## Contributing
+## Contact
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request!
+For any inquiries about this website, please contact:
+- Website: [sunsetseptics.ca](https://sunsetseptics.ca)
 
 ## License
 
-© 2024 Sunset Septics. All rights reserved.
+This project is proprietary and confidential. All rights reserved.
