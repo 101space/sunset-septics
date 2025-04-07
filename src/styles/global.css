@@ -1786,16 +1786,23 @@ body {
 
 @media (max-width: 768px) {
   .model-navigation {
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+  
+  .model-nav-item,
+  .model-nav-dot {
+    display: none !important;
   }
   
   .contact-header,
   .resources-header {
-    display: none;
+    display: none !important;
   }
   
   .contact-tile,
   .resources-tile {
-    display: none;
+    display: none !important;
   }
 } 
