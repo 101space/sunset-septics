@@ -1786,22 +1786,16 @@ body {
 
 @media (max-width: 768px) {
   .model-navigation {
-    left: 0.75rem;
+    display: none;
   }
   
-  .model-nav-dot {
-    width: 10px;
-    height: 10px;
+  .contact-header,
+  .resources-header {
+    display: none;
   }
   
-  .model-nav-dot.active {
-    width: 12px;
-    height: 12px;
-  }
-  
-  .model-nav-label {
-    left: 20px;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.75rem;
+  .contact-tile,
+  .resources-tile {
+    display: none;
   }
 } 
