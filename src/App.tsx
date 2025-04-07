@@ -1,14 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Scene from './components/Scene'
 import { Gallery } from './components/Gallery'
 import { Reference } from './components/Reference'
-import Navigation from './components/Navigation'
+import { Navigation } from './components/Navigation'
 import ContactTile from './components/ContactTile'
 import ResourcesTile from './components/ResourcesTile'
 import './styles/global.css'
+import './styles/mobile-fix.css'
+
+// Define the custom event type
+interface MobileModeEvent extends CustomEvent {
+  detail: {
+    isMobile: boolean;
+  };
+}
 
 const App: React.FC = () => {
-  const [modelSection] = useState('overview');
+  const [modelSection, setModelSection] = useState('overview');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleMobileMode = (event: MobileModeEvent) => {
+      setIsMobile(event.detail.isMobile);
+    };
+
+    // Add event listener for mobile mode changes
+    window.addEventListener('mobileModeChange', handleMobileMode as EventListener);
+
+    return () => {
+      // Clean up event listener
+      window.removeEventListener('mobileModeChange', handleMobileMode as EventListener);
+    };
+  }, []);
 
   const handleGalleryImageSelect = (selected: boolean) => {
     const referenceContainer = document.querySelector('.reference-container') as HTMLElement;
@@ -27,7 +50,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="app">
+    <div className={`app ${isMobile ? 'is-mobile' : ''}`}>
       <Navigation />
       <main className="main-content">
         {/* Home section (Scene, Gallery, Reference) */}
@@ -35,7 +58,7 @@ const App: React.FC = () => {
           <Scene modelSection={modelSection} />
           <div className="main-page-stripe" />
           <Gallery onImageSelect={handleGalleryImageSelect} />
-          <Reference />
+          {!isMobile && <Reference />}
         </div>
         
         {/* Contact header and tile on right side */}

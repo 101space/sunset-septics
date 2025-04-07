@@ -1,37 +1,79 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
-// Props interface removed since we're not using navigation props currently
-const Navigation: React.FC = () => {
-  // Navigation function removed as it's not currently used
+export const Navigation: React.FC = () => {
+  const subtitleRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobileMode = () => {
+      if (!titleRef.current || !subtitleRef.current) return;
+
+      const titleRect = titleRef.current.getBoundingClientRect();
+      const subtitleRect = subtitleRef.current.getBoundingClientRect();
+
+      // Check if elements are stacked (mobile mode)
+      const isStacked = Math.abs(titleRect.left - subtitleRect.left) < 5 &&
+                       subtitleRect.top >= titleRect.bottom - 1;
+
+      // Set mobile mode on both body and app container
+      document.body.classList.toggle('is-mobile', isStacked);
+      document.body.setAttribute('data-mobile', isStacked.toString());
+      
+      // Also set on app container
+      const appContainer = document.querySelector('.app');
+      if (appContainer) {
+        appContainer.classList.toggle('is-mobile', isStacked);
+      }
+
+      // Dispatch custom event for mobile mode
+      const event = new CustomEvent('mobileModeChange', {
+        detail: { isMobile: isStacked }
+      });
+      window.dispatchEvent(event);
+
+      // Force hide reference elements if in mobile mode
+      const referenceElements = document.querySelectorAll('.reference-container, .reference-grid, .reference-card, .model-nav-dot');
+      referenceElements.forEach(el => {
+        if (el instanceof HTMLElement) {
+          el.style.display = isStacked ? 'none' : '';
+          el.style.visibility = isStacked ? 'hidden' : '';
+          el.style.opacity = isStacked ? '0' : '';
+          el.style.pointerEvents = isStacked ? 'none' : '';
+        }
+      });
+    };
+
+    // Create resize observer
+    const resizeObserver = new ResizeObserver(() => {
+      requestAnimationFrame(checkMobileMode);
+    });
+
+    // Observe both title and subtitle
+    if (titleRef.current) resizeObserver.observe(titleRef.current);
+    if (subtitleRef.current) resizeObserver.observe(subtitleRef.current);
+
+    // Initial check
+    checkMobileMode();
+
+    // Also check on window resize
+    window.addEventListener('resize', checkMobileMode);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', checkMobileMode);
+    };
+  }, []);
 
   return (
-    <nav className="navigation glass">
+    <nav className="nav-container">
       <div className="nav-content">
-        <div className="nav-brand">
-          <h1 className="nav-title" style={{
-            background: 'linear-gradient(45deg, var(--color-primary), var(--color-accent))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            textShadow: '0 0 10px rgba(255, 107, 53, 0.4)',
-            filter: 'drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4))',
-            fontSize: '2.8rem',
-            fontWeight: '800',
-            letterSpacing: '1px'
-          }}>Sunset Septics</h1>
-          <h2 className="nav-subtitle" style={{
-            textShadow: '0 0 6px rgba(46, 196, 182, 0.4)',
-            letterSpacing: '0.5px',
-            fontWeight: '600'
-          }}>Septic System Construction Specialists</h2>
+        <div ref={titleRef} className="nav-title">
+          Sunset Septic
         </div>
-        <div className="nav-license">
-          <p>Certified Septic System Installer</p>
-          <p>Servicing Southern Ontario</p>
+        <div ref={subtitleRef} className="nav-license">
+          Servicing Southern Ontario
         </div>
       </div>
     </nav>
   );
-};
-
-export default Navigation; 
+}; 

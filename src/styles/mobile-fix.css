@@ -1,0 +1,126 @@
+/* Super aggressive mobile hiding for ANY navigation elements */
+@media (max-width: 768px), (orientation: portrait) {
+  /* Target model navigation */
+  .model-navigation,
+  .model-nav-item,
+  .model-nav-dot,
+  .model-nav-label,
+  
+  /* Target generic navigation elements */
+  [class*="nav-dot"],
+  [class*="nav-item"],
+  [class*="model-nav"],
+  [class*="navigation"],
+  [class*="dots"],
+  [class*="circle-button"],
+  
+  /* Target by location */
+  div[style*="position: fixed"][style*="left"],
+  div[style*="position: absolute"][style*="left"],
+  
+  /* Target any circular elements */
+  div[class*="dot"],
+  div[class*="circle"],
+  
+  /* Target elements at left side of screen */
+  div[style*="left: 1"],
+  div[style*="left:1"],
+  div[style*="left: 0"],
+  div[style*="left:0"],
+  
+  /* Target reference elements */
+  .reference-container,
+  .reference-grid,
+  .reference-card,
+  .reference-card-content,
+  [class*="reference-"],
+  [class*="model-nav-"],
+  
+  /* Target numbered elements */
+  [data-number="1"],
+  [data-number="2"],
+  [data-number="3"],
+  [data-number="4"],
+  [data-number="5"],
+  [data-number="6"] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    z-index: -9999 !important;
+  }
+}
+
+/* Hide elements when mobile class is present */
+.is-mobile .reference-container,
+.is-mobile .reference-grid,
+.is-mobile .reference-card,
+.is-mobile .reference-card-content,
+.is-mobile .model-navigation,
+.is-mobile .model-nav-dot,
+.is-mobile .model-nav-item,
+.is-mobile .model-nav-label,
+.is-mobile [class*="reference-"],
+.is-mobile [class*="model-nav-"],
+.is-mobile [data-number],
+[data-mobile="true"] .reference-container,
+[data-mobile="true"] .reference-grid,
+[data-mobile="true"] .reference-card,
+[data-mobile="true"] .reference-card-content,
+[data-mobile="true"] .model-navigation,
+[data-mobile="true"] .model-nav-dot,
+[data-mobile="true"] .model-nav-item,
+[data-mobile="true"] .model-nav-label,
+[data-mobile="true"] [class*="reference-"],
+[data-mobile="true"] [class*="model-nav-"],
+[data-mobile="true"] [data-number] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  z-index: -9999 !important;
+}
+
+/* Additional styles for navigation in mobile mode */
+.is-mobile .nav-content,
+[data-mobile="true"] .nav-content {
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 0.5rem !important;
+}
+
+.is-mobile .nav-license,
+[data-mobile="true"] .nav-license {
+  margin-top: 0.5rem !important;
+  margin-left: 0 !important;
+}
+
+/* Force hide any elements with numbers in mobile mode */
+.is-mobile [class*="number-"],
+.is-mobile [class*="dot-"],
+.is-mobile [class*="circle-"],
+[data-mobile="true"] [class*="number-"],
+[data-mobile="true"] [class*="dot-"],
+[data-mobile="true"] [class*="circle-"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+} 
